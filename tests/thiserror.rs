@@ -96,6 +96,10 @@ mod tests_file {
         fs::remove_file(test_file)?;
 
         match result {
+            Ok(content) => {
+                assert_eq!(content, "test content");
+                Ok(())
+            }
             Err(FileError::ReadError { path, source: _ }) => {
                 assert_eq!(path, PathBuf::from(test_file));
                 Ok(())
